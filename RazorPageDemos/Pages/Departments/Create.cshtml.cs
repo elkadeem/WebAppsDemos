@@ -1,12 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using Microsoft.AspNetCore.Mvc.Rendering;
 using RazorPageDemos.Entities;
-using RazorPageDemos.Model;
+using System.ComponentModel.DataAnnotations;
 
 namespace RazorPageDemos.Pages.Departments
 {
@@ -25,20 +20,40 @@ namespace RazorPageDemos.Pages.Departments
         }
 
         [BindProperty]
-        public Department Department { get; set; } = default!;
+        [Required]
+        [MaxLength(50)]
+        public string DepartmentName { get; set; } = default!;
+
+        [BindProperty]
+        [Required]
+        [MaxLength(50)]
+        public string GroupName { get; set; } = default!;
+
 
         // To protect from overposting attacks, see https://aka.ms/RazorPagesCRUD
         public async Task<IActionResult> OnPostAsync()
         {
+            if(!string.IsNullOrWhiteSpace(DepartmentName)
+                && _context.Departments.Any(d => d.Name == DepartmentName))
+            {
+                ModelState.AddModelError(nameof(DepartmentName), "Department name already exists");
+            }
+
             if (!ModelState.IsValid)
             {
                 return Page();
             }
 
-            _context.Departments.Add(Department);
+            _context.Departments.Add(new Department
+            {
+                Name = DepartmentName,
+                GroupName = GroupName
+            });
             await _context.SaveChangesAsync();
-
+            TempData["Message"] = "Department created successfully";
             return RedirectToPage("./Index");
         }
     }
+
+   
 }

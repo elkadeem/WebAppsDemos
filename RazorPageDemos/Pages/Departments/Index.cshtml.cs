@@ -22,7 +22,7 @@ namespace RazorPageDemos.Pages.Departments
         public int CurrentPage { get; set; } = 1;
 
         private const int PageSize = 5;
-        public StaticPagedList<Department> Departments { get;set; } = default!;
+        public StaticPagedList<DepartmentDto> Departments { get; set; } = default!;
 
         public async Task OnGetAsync()
         {
@@ -40,9 +40,28 @@ namespace RazorPageDemos.Pages.Departments
                 .OrderBy(c => c.Name)
                 .Skip(pageIndex * PageSize)
                 .Take(PageSize)
+                .Select(c => new DepartmentDto
+                {
+                    DepartmentId = c.DepartmentId,
+                    Name = c.Name,
+                    GroupName = c.GroupName,
+                    ModifiedDate = c.ModifiedDate
+                })
                 .ToListAsync();
 
-            Departments = new StaticPagedList<Department>(items, pageIndex + 1, PageSize, totalItemsCount);
+            Departments = new StaticPagedList<DepartmentDto>(items, pageIndex + 1, PageSize, totalItemsCount);
+        }
+
+        public async Task<IActionResult> OnPostDeleteAsync(short id)
+        {
+            var department = await _context.Departments.FindAsync(id);
+            if (department != null)
+            {
+                _context.Departments.Remove(department);
+                await _context.SaveChangesAsync();
+            }
+
+            return RedirectToPage();
         }
     }
 }
