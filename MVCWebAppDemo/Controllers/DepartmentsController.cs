@@ -50,7 +50,7 @@ namespace MVCWebAppDemo.Controllers
         // GET: Departments/Details/5
         public async Task<IActionResult> Details(short? id)
         {
-            if (id == null && id <= 0)
+            if (id == null || id <= 0)
             {
                 return NotFound();
             }
@@ -108,7 +108,7 @@ namespace MVCWebAppDemo.Controllers
         // GET: Departments/Edit/5
         public async Task<IActionResult> Edit(short? id)
         {
-            if (id == null && id <= 0)
+            if (id == null || id <= 0)
             {
                 return NotFound();
             }
@@ -185,12 +185,19 @@ namespace MVCWebAppDemo.Controllers
         // GET: Departments/Delete/5
         public async Task<IActionResult> Delete(short? id)
         {
-            if (id == null)
+            if (id == null || id <= 0)
             {
                 return NotFound();
             }
 
             var department = await _context.Departments
+                .Select(c => new DepartmentDto
+                {
+                    DepartmentId = c.DepartmentId,
+                    Name = c.Name,
+                    GroupName = c.GroupName,
+                    ModifiedDate = c.ModifiedDate
+                })
                 .FirstOrDefaultAsync(m => m.DepartmentId == id);
             if (department == null)
             {
