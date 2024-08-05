@@ -6,6 +6,8 @@ namespace MVCWebAppDemo.Models
     {
         public string Keyword {  get; set; }
 
+        public int CurrentPage { get; set; }
+
         public IPagedList<DepartmentDto> Departments { get; set; }
     }
 }

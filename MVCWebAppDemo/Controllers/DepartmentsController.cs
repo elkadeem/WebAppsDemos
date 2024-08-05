@@ -17,15 +17,15 @@ namespace MVCWebAppDemo.Controllers
         }
 
         // GET: Departments
-        public async Task<IActionResult> Index(string keyword, int currentPage)
+        public async Task<IActionResult> Index(DepartmentsViewModel viewModel)
         {
             IQueryable<Department> query = _context.Departments;
-            if (!string.IsNullOrWhiteSpace(keyword))
+            if (!string.IsNullOrWhiteSpace(viewModel.Keyword))
             {
-                query = query.Where(p => p.Name.Contains(keyword));
+                query = query.Where(p => p.Name.Contains(viewModel.Keyword));
             }
 
-            int pageIndex = currentPage - 1;
+            int pageIndex = viewModel.CurrentPage - 1;
             pageIndex = pageIndex < 0 ? 0 : pageIndex;
             int totalItemsCount = await query.CountAsync();
 
@@ -42,23 +42,27 @@ namespace MVCWebAppDemo.Controllers
                 })
                 .ToListAsync();
 
-            var departments = new StaticPagedList<DepartmentDto>(items, pageIndex + 1, PageSize, totalItemsCount);
-                        
-            return View(new DepartmentsViewModel {
-              Keyword = keyword,
-              Departments = departments
-            });
+            viewModel.Departments = new StaticPagedList<DepartmentDto>(items, pageIndex + 1, PageSize, totalItemsCount);
+                      
+            return View(viewModel);
         }
 
         // GET: Departments/Details/5
         public async Task<IActionResult> Details(short? id)
         {
-            if (id == null)
+            if (id == null && id <= 0)
             {
                 return NotFound();
             }
 
             var department = await _context.Departments
+                .Select(c => new DepartmentDto
+                {
+                    DepartmentId = c.DepartmentId,
+                    Name = c.Name,
+                    GroupName = c.GroupName,
+                    ModifiedDate = c.ModifiedDate
+                })
                 .FirstOrDefaultAsync(m => m.DepartmentId == id);
             if (department == null)
             {
