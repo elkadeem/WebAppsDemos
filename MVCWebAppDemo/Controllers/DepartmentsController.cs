@@ -83,26 +83,45 @@ namespace MVCWebAppDemo.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("DepartmentId,Name,GroupName,ModifiedDate")] Department department)
+        public async Task<IActionResult> Create([Bind("Name,GroupName")] DepartmentDto department)
         {
+            if (!string.IsNullOrWhiteSpace(department.Name)
+                && _context.Departments.Any(d => d.Name == department.Name))
+            {
+                ModelState.AddModelError("", "Department name already exists");
+            }
+
             if (ModelState.IsValid)
             {
-                _context.Add(department);
+                _context.Departments.Add(new Department { 
+                  Name = department.Name,
+                  GroupName= department.GroupName,
+                });
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
+
+            TempData["Message"] = "Department created successfully";
             return View(department);
         }
 
         // GET: Departments/Edit/5
         public async Task<IActionResult> Edit(short? id)
         {
-            if (id == null)
+            if (id == null && id <= 0)
             {
                 return NotFound();
             }
 
-            var department = await _context.Departments.FindAsync(id);
+            var department = await _context.Departments
+                .Select(c => new DepartmentDto
+                {
+                    DepartmentId = c.DepartmentId,
+                    Name = c.Name,
+                    GroupName = c.GroupName,
+                    ModifiedDate = c.ModifiedDate
+                })
+                .FirstOrDefaultAsync(c => c.DepartmentId == id);
             if (department == null)
             {
                 return NotFound();
@@ -115,23 +134,39 @@ namespace MVCWebAppDemo.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(short id, [Bind("DepartmentId,Name,GroupName,ModifiedDate")] Department department)
+        public async Task<IActionResult> Edit(short id, [Bind("DepartmentId,Name,GroupName")] DepartmentDto departmentDto)
         {
-            if (id != department.DepartmentId)
+            if (id != departmentDto.DepartmentId)
             {
                 return NotFound();
+            }
+
+            if (!string.IsNullOrWhiteSpace(departmentDto.Name)
+                && _context.Departments.Any(d => d.DepartmentId != departmentDto.DepartmentId
+                && d.Name == departmentDto.Name))
+            {
+                ModelState.AddModelError(nameof(departmentDto.Name), "Department name already exists");
             }
 
             if (ModelState.IsValid)
             {
                 try
                 {
-                    _context.Update(department);
+                    var deparment = await _context.Departments.FirstOrDefaultAsync(c => c.DepartmentId == departmentDto.DepartmentId);
+                    if (deparment == null)
+                    {
+                        return NotFound();
+                    }
+
+                    deparment.Name = departmentDto.Name;
+                    deparment.GroupName = departmentDto.GroupName;
+                    deparment.ModifiedDate = DateTime.Now;
+                   
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!DepartmentExists(department.DepartmentId))
+                    if (!DepartmentExists(departmentDto.DepartmentId))
                     {
                         return NotFound();
                     }
@@ -142,7 +177,9 @@ namespace MVCWebAppDemo.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            return View(department);
+
+            TempData["Message"] = "Department updated successfully";
+            return View(departmentDto);
         }
 
         // GET: Departments/Delete/5
