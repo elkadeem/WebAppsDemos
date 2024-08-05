@@ -1,28 +1,53 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Rendering;
+﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using MVCWebAppDemo.Entities;
 using MVCWebAppDemo.Model;
+using MVCWebAppDemo.Models;
+using X.PagedList;
 
 namespace MVCWebAppDemo.Controllers
 {
     public class DepartmentsController : Controller
     {
         private readonly AdventureworksDbContext _context;
-
+        private const int PageSize = 5;
         public DepartmentsController(AdventureworksDbContext context)
         {
             _context = context;
         }
 
         // GET: Departments
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(string keyword, int currentPage)
         {
-            return View(await _context.Departments.ToListAsync());
+            IQueryable<Department> query = _context.Departments;
+            if (!string.IsNullOrWhiteSpace(keyword))
+            {
+                query = query.Where(p => p.Name.Contains(keyword));
+            }
+
+            int pageIndex = currentPage - 1;
+            pageIndex = pageIndex < 0 ? 0 : pageIndex;
+            int totalItemsCount = await query.CountAsync();
+
+            var items = await query
+                .OrderBy(c => c.Name)
+                .Skip(pageIndex * PageSize)
+                .Take(PageSize)
+                .Select(c => new DepartmentDto
+                {
+                    DepartmentId = c.DepartmentId,
+                    Name = c.Name,
+                    GroupName = c.GroupName,
+                    ModifiedDate = c.ModifiedDate
+                })
+                .ToListAsync();
+
+            var departments = new StaticPagedList<DepartmentDto>(items, pageIndex + 1, PageSize, totalItemsCount);
+                        
+            return View(new DepartmentsViewModel {
+              Keyword = keyword,
+              Departments = departments
+            });
         }
 
         // GET: Departments/Details/5

@@ -1,4 +1,5 @@
-﻿@model IEnumerable<MVCWebAppDemo.Entities.Department>
+﻿@using X.Web.PagedList
+@model DepartmentsViewModel
 
 @{
     ViewData["Title"] = "Index";
@@ -9,23 +10,36 @@
 <p>
     <a asp-action="Create">Create New</a>
 </p>
+<div class="row">
+    <div class="col-md-4">
+        <form method="get">
+            <div class="form-group">
+                <label asp-for="Keyword" class="control-label"></label>
+                <input asp-for="Keyword" class="form-control" />
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Search" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
 <table class="table">
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.Name)
+                @Html.DisplayNameFor(model => model.Departments[0].Name)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.GroupName)
+                @Html.DisplayNameFor(model => model.Departments[0].GroupName)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.ModifiedDate)
+                @Html.DisplayNameFor(model => model.Departments[0].ModifiedDate)
             </th>
             <th></th>
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model) {
+@foreach (var item in Model.Departments) {
         <tr>
             <td>
                 @Html.DisplayFor(modelItem => item.Name)
@@ -45,3 +59,4 @@
 }
     </tbody>
 </table>
+@Html.PagedListPager(Model.Departments, page => Url.Action("Index", new { currentPage = page, Model.Keyword }))
