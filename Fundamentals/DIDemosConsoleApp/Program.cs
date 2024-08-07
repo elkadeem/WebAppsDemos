@@ -1,4 +1,5 @@
-﻿using Microsoft.Extensions.DependencyInjection;
+﻿using DIDemosConsoleApp.DISample;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace DIDemosConsoleApp
 {
@@ -6,6 +7,10 @@ namespace DIDemosConsoleApp
     {
         static void Main(string[] args)
         {
+
+            DIConsumer.Consume();
+            Console.ReadLine();
+
             //SampleUsingNew();
 
             // Create DI container and register types into it
