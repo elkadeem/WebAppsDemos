@@ -16,7 +16,8 @@
       "applicationUrl": "http://localhost:5070",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
-      }
+      },
+      "commandLineArgs": ""
     },
     "https": {
       "commandName": "Project",

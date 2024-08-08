@@ -1,5 +1,7 @@
 using Microsoft.EntityFrameworkCore;
 using RazorPageDemos.Model;
+using RazorPageDemos.Options;
+using RazorPageDemos.Repositories;
 
 namespace RazorPageDemos
 {
@@ -9,17 +11,42 @@ namespace RazorPageDemos
         {
             var builder = WebApplication.CreateBuilder(args);
 
+            if(builder.Environment.IsDevelopment())
+            {
+                VacationsRequestsOption vacationsRequestsOption = new VacationsRequestsOption();
+                builder.Configuration.GetSection(VacationsRequestsOption.SectionKey)
+                    .Bind(vacationsRequestsOption);
+
+                Console.WriteLine($"{vacationsRequestsOption.ApiUrl}-{vacationsRequestsOption.ApiUrl}");
+
+                // Option Pattern with Get
+                var vacationsRequestsOptionGet = builder.Configuration
+.GetSection(VacationsRequestsOption.SectionKey).Get<VacationsRequestsOption>(); 
+                
+                // Option Pattern Services
+                builder.Services.Configure<VacationsRequestsOption>(builder.Configuration.GetSection(VacationsRequestsOption.SectionKey));
+
+                // Register development services
+            }
+
             builder.Services.AddDbContext<AdventureworksDbContext>(options =>
             {
                 options.UseSqlServer(builder.Configuration.GetConnectionString("AdventureWorks2019ConnectionString"));
                 options.LogTo(System.Console.WriteLine);
             });
           
+
             // Add services to the container.
             builder.Services.AddRazorPages();
 
-            var app = builder.Build();
+            //builder.Services.AddScoped<IDepartmentRepository, DepartmentRepository>();
 
+            builder.Services.AddRepositories();
+
+            
+
+            var app = builder.Build();
+            
             // Configure the HTTP request pipeline.
             if (!app.Environment.IsDevelopment())
             {

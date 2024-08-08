@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 using RazorPageDemos.Entities;
+using RazorPageDemos.Repositories;
 using X.PagedList;
 
 namespace RazorPageDemos.Pages.Departments
@@ -9,10 +10,13 @@ namespace RazorPageDemos.Pages.Departments
     public class IndexModel : PageModel
     {
         private readonly RazorPageDemos.Model.AdventureworksDbContext _context;
+        private readonly IDepartmentRepository _departmentRepository;
 
-        public IndexModel(RazorPageDemos.Model.AdventureworksDbContext context)
+        public IndexModel(RazorPageDemos.Model.AdventureworksDbContext context
+            , IDepartmentRepository departmentRepository)
         {
             _context = context;
+            _departmentRepository = departmentRepository;
         }
 
         [BindProperty(SupportsGet = true)]

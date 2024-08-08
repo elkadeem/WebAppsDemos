@@ -1,4 +1,5 @@
 ﻿using DIDemosConsoleApp.DISample;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace DIDemosConsoleApp
@@ -7,6 +8,27 @@ namespace DIDemosConsoleApp
     {
         static void Main(string[] args)
         {
+            // Configuration system
+            ConfigurationBuilder configurationBuilder = new ConfigurationBuilder();
+
+            // Add Json file
+            configurationBuilder.AddJsonFile("appsettings.json", false, true)
+                .AddEnvironmentVariables()
+                .AddCommandLine(args);
+
+            var configuration = configurationBuilder.Build();
+            
+            Console.WriteLine($"DefaultConnection: {configuration.GetConnectionString("DefaultConnection")}");
+
+            Console.WriteLine($"DefaultConnection: {configuration["ConnectionStrings:DefaultConnection"]}");
+
+            Console.WriteLine($"VacationApiUrl: {configuration["Vacations:VacationApiUrl"]}");
+
+            Console.WriteLine($"VacationApiUrl: {configuration.GetSection("Vacations")["VacationApiUrl"]}");
+
+            Console.WriteLine($"VacationApiUrl: {configuration.GetSection("Vacations")["VacationApiScope"]}");
+
+            Console.ReadLine();
 
             DIConsumer.Consume();
             Console.ReadLine();

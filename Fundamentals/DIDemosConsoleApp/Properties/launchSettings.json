@@ -1,0 +1,11 @@
+{
+  "profiles": {
+    "DIDemosConsoleApp": {
+      "commandName": "Project",
+      "commandLineArgs": "--Vacations:VacationApiUrl \"URL from argus\"\r\n/Vacations:VacationApiScope=\"VacationApiScope from args\"",
+      "environmentVariables": {
+        "Vacations__VacationApiUrl": "Url from env variables"
+      }
+    }
+  }
+}
