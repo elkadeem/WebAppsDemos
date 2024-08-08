@@ -10,6 +10,9 @@ namespace RazorPageDemos
         public static void Main(string[] args)
         {
             var builder = WebApplication.CreateBuilder(args);
+            
+            // Configure Logging
+            builder.Logging.AddConsole();
 
             if(builder.Environment.IsDevelopment())
             {
@@ -32,7 +35,7 @@ namespace RazorPageDemos
             builder.Services.AddDbContext<AdventureworksDbContext>(options =>
             {
                 options.UseSqlServer(builder.Configuration.GetConnectionString("AdventureWorks2019ConnectionString"));
-                options.LogTo(System.Console.WriteLine);
+                //options.LogTo(System.Console.WriteLine);
             });
           
 
