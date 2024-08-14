@@ -1,0 +1,95 @@
+﻿@page
+@model RazorPageDemos.Areas.Employees.Pages.Employees.EditModel
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h1>Edit</h1>
+
+<h4>Employee</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="Employee.BusinessEntityId" />
+            <div class="form-group">
+                <label asp-for="Employee.NationalIdnumber" class="control-label"></label>
+                <input asp-for="Employee.NationalIdnumber" class="form-control" />
+                <span asp-validation-for="Employee.NationalIdnumber" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Employee.LoginId" class="control-label"></label>
+                <input asp-for="Employee.LoginId" class="form-control" />
+                <span asp-validation-for="Employee.LoginId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Employee.JobTitle" class="control-label"></label>
+                <input asp-for="Employee.JobTitle" class="form-control" />
+                <span asp-validation-for="Employee.JobTitle" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Employee.BirthDate" class="control-label"></label>
+                <input asp-for="Employee.BirthDate" class="form-control" />
+                <span asp-validation-for="Employee.BirthDate" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Employee.MaritalStatus" class="control-label"></label>
+                <input asp-for="Employee.MaritalStatus" class="form-control" />
+                <span asp-validation-for="Employee.MaritalStatus" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Employee.Gender" class="control-label"></label>
+                <input asp-for="Employee.Gender" class="form-control" />
+                <span asp-validation-for="Employee.Gender" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Employee.HireDate" class="control-label"></label>
+                <input asp-for="Employee.HireDate" class="form-control" />
+                <span asp-validation-for="Employee.HireDate" class="text-danger"></span>
+            </div>
+            <div class="form-group form-check">
+                <label class="form-check-label">
+                    <input class="form-check-input" asp-for="Employee.SalariedFlag" /> @Html.DisplayNameFor(model => model.Employee.SalariedFlag)
+                </label>
+            </div>
+            <div class="form-group">
+                <label asp-for="Employee.VacationHours" class="control-label"></label>
+                <input asp-for="Employee.VacationHours" class="form-control" />
+                <span asp-validation-for="Employee.VacationHours" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Employee.SickLeaveHours" class="control-label"></label>
+                <input asp-for="Employee.SickLeaveHours" class="form-control" />
+                <span asp-validation-for="Employee.SickLeaveHours" class="text-danger"></span>
+            </div>
+            <div class="form-group form-check">
+                <label class="form-check-label">
+                    <input class="form-check-input" asp-for="Employee.CurrentFlag" /> @Html.DisplayNameFor(model => model.Employee.CurrentFlag)
+                </label>
+            </div>
+            <div class="form-group">
+                <label asp-for="Employee.Rowguid" class="control-label"></label>
+                <input asp-for="Employee.Rowguid" class="form-control" />
+                <span asp-validation-for="Employee.Rowguid" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Employee.ModifiedDate" class="control-label"></label>
+                <input asp-for="Employee.ModifiedDate" class="form-control" />
+                <span asp-validation-for="Employee.ModifiedDate" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-page="./Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

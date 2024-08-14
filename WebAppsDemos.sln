@@ -19,7 +19,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebApplicationMinimalAPI", 
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "EFCore", "EFCore", "{F2779E4A-2D44-4614-82D4-F4BA1D2E1F06}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AdvancedMappingSamples", "EF\AdvancedMappingSamples\AdvancedMappingSamples.csproj", "{8798AFA9-E242-4FCC-8558-769B9E79C478}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AdvancedMappingSamples", "EF\AdvancedMappingSamples\AdvancedMappingSamples.csproj", "{8798AFA9-E242-4FCC-8558-769B9E79C478}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ShiftsRazorClassLibrary", "ShiftsRazorClassLibrary\ShiftsRazorClassLibrary.csproj", "{307A887F-B92D-4075-9814-42A814DDFE32}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -55,6 +57,10 @@ Global
 		{8798AFA9-E242-4FCC-8558-769B9E79C478}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8798AFA9-E242-4FCC-8558-769B9E79C478}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8798AFA9-E242-4FCC-8558-769B9E79C478}.Release|Any CPU.Build.0 = Release|Any CPU
+		{307A887F-B92D-4075-9814-42A814DDFE32}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{307A887F-B92D-4075-9814-42A814DDFE32}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{307A887F-B92D-4075-9814-42A814DDFE32}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{307A887F-B92D-4075-9814-42A814DDFE32}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

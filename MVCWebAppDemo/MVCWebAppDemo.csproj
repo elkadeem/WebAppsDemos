@@ -25,4 +25,8 @@
     <Folder Include="Areas\Employees\Models\" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\ShiftsRazorClassLibrary\ShiftsRazorClassLibrary.csproj" />
+  </ItemGroup>
+
 </Project>

@@ -1,0 +1,120 @@
+﻿@page
+@model RazorPageDemos.Areas.Employees.Pages.Employees.IndexModel
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-page="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Employee[0].NationalIdnumber)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Employee[0].LoginId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Employee[0].OrganizationLevel)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Employee[0].JobTitle)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Employee[0].BirthDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Employee[0].MaritalStatus)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Employee[0].Gender)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Employee[0].HireDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Employee[0].SalariedFlag)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Employee[0].VacationHours)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Employee[0].SickLeaveHours)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Employee[0].CurrentFlag)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Employee[0].Rowguid)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Employee[0].ModifiedDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Employee[0].BusinessEntity)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model.Employee) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.NationalIdnumber)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.LoginId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.OrganizationLevel)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.JobTitle)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.BirthDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.MaritalStatus)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Gender)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.HireDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.SalariedFlag)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.VacationHours)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.SickLeaveHours)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CurrentFlag)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Rowguid)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ModifiedDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.BusinessEntity.BusinessEntityId)
+            </td>
+            <td>
+                <a asp-page="./Edit" asp-route-id="@item.BusinessEntityId">Edit</a> |
+                <a asp-page="./Details" asp-route-id="@item.BusinessEntityId">Details</a> |
+                <a asp-page="./Delete" asp-route-id="@item.BusinessEntityId">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
