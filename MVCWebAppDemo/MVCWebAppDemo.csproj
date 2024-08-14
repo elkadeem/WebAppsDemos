@@ -20,4 +20,9 @@
 	<PackageReference Include="X.Web.PagedList" Version="10.1.2" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Areas\Employees\Data\" />
+    <Folder Include="Areas\Employees\Models\" />
+  </ItemGroup>
+
 </Project>

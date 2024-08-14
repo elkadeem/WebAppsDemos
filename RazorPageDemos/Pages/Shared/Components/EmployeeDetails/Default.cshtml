@@ -1,0 +1,9 @@
+﻿@using RazorPageDemos.Entities
+@model Employee
+
+<div>
+    <ul>
+        <li>First Name: @($"{Model.BusinessEntity.FirstName} {Model.BusinessEntity.MiddleName} {Model.BusinessEntity.LastName}")</li>
+        <li>Title: @Model.JobTitle</li>
+    </ul>
+</div>

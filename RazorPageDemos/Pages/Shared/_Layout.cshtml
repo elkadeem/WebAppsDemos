@@ -34,6 +34,9 @@
         </nav>
     </header>
     <div class="container">
+        <div>
+            @await Component.InvokeAsync("EmployeeDetails", new { id = 1 })
+        </div>
         <main role="main" class="pb-3">
             @RenderBody()
         </main>
