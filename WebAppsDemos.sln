@@ -21,7 +21,11 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "EFCore", "EFCore", "{F2779E
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AdvancedMappingSamples", "EF\AdvancedMappingSamples\AdvancedMappingSamples.csproj", "{8798AFA9-E242-4FCC-8558-769B9E79C478}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ShiftsRazorClassLibrary", "ShiftsRazorClassLibrary\ShiftsRazorClassLibrary.csproj", "{307A887F-B92D-4075-9814-42A814DDFE32}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ShiftsRazorClassLibrary", "ShiftsRazorClassLibrary\ShiftsRazorClassLibrary.csproj", "{307A887F-B92D-4075-9814-42A814DDFE32}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "AuthenticationAndauthorization", "AuthenticationAndauthorization", "{A273CA4B-31F9-4454-A482-95B5F89A8060}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SimpleCookieAuth", "AuthenticationAndauthorization\SimpleCookieAuth\SimpleCookieAuth.csproj", "{9051530C-58D3-48AE-B54A-BBCA4511D91B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -61,6 +65,10 @@ Global
 		{307A887F-B92D-4075-9814-42A814DDFE32}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{307A887F-B92D-4075-9814-42A814DDFE32}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{307A887F-B92D-4075-9814-42A814DDFE32}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9051530C-58D3-48AE-B54A-BBCA4511D91B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9051530C-58D3-48AE-B54A-BBCA4511D91B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9051530C-58D3-48AE-B54A-BBCA4511D91B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9051530C-58D3-48AE-B54A-BBCA4511D91B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -69,6 +77,7 @@ Global
 		{4C2CE882-CBD8-48E1-98A3-89FA6C2475AC} = {36D09F8B-2FC5-44A9-8E50-59C2C832905E}
 		{1960DF69-8F87-4195-A215-C09E044016BB} = {36D09F8B-2FC5-44A9-8E50-59C2C832905E}
 		{8798AFA9-E242-4FCC-8558-769B9E79C478} = {F2779E4A-2D44-4614-82D4-F4BA1D2E1F06}
+		{9051530C-58D3-48AE-B54A-BBCA4511D91B} = {A273CA4B-31F9-4454-A482-95B5F89A8060}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {9124756C-0BAC-4CFC-B152-BD12DCDFB959}
