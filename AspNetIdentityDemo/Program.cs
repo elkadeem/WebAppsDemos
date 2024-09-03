@@ -1,5 +1,5 @@
+global using AspNetIdentityDemo.Entities.Identity;
 using AspNetIdentityDemo.Data;
-using AspNetIdentityDemo.Entities.Identity;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
