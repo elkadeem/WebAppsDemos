@@ -29,7 +29,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SimpleCookieAuth", "Authent
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WindowsAuthDemo", "AuthenticationAndauthorization\WindowsAuthDemo\WindowsAuthDemo.csproj", "{5C3DA30E-C5E9-49C5-910D-732B5D6700F9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AspNetIdentityDemo", "AspNetIdentityDemo\AspNetIdentityDemo.csproj", "{DA7FD988-E14F-4531-815D-5A9D137A02B6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AspNetIdentityDemo", "AspNetIdentityDemo\AspNetIdentityDemo.csproj", "{DA7FD988-E14F-4531-815D-5A9D137A02B6}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WsFed-Demo", "AuthenticationAndauthorization\WsFed-Demo\WsFed-Demo.csproj", "{B59C735E-87C9-4088-9F26-5BABEF12B54B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -81,6 +83,10 @@ Global
 		{DA7FD988-E14F-4531-815D-5A9D137A02B6}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DA7FD988-E14F-4531-815D-5A9D137A02B6}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{DA7FD988-E14F-4531-815D-5A9D137A02B6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B59C735E-87C9-4088-9F26-5BABEF12B54B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B59C735E-87C9-4088-9F26-5BABEF12B54B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B59C735E-87C9-4088-9F26-5BABEF12B54B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B59C735E-87C9-4088-9F26-5BABEF12B54B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -92,6 +98,7 @@ Global
 		{9051530C-58D3-48AE-B54A-BBCA4511D91B} = {A273CA4B-31F9-4454-A482-95B5F89A8060}
 		{5C3DA30E-C5E9-49C5-910D-732B5D6700F9} = {A273CA4B-31F9-4454-A482-95B5F89A8060}
 		{DA7FD988-E14F-4531-815D-5A9D137A02B6} = {A273CA4B-31F9-4454-A482-95B5F89A8060}
+		{B59C735E-87C9-4088-9F26-5BABEF12B54B} = {A273CA4B-31F9-4454-A482-95B5F89A8060}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {9124756C-0BAC-4CFC-B152-BD12DCDFB959}
