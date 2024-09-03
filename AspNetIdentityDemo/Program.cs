@@ -21,6 +21,19 @@ namespace AspNetIdentityDemo
                 .AddEntityFrameworkStores<ApplicationDbContext>();
             builder.Services.AddRazorPages();
 
+            builder.Services.AddAuthentication()
+                .AddGoogle(options =>
+                {
+                    options.ClientId = builder.Configuration["Authentication:Google:ClientId"];
+                    options.ClientSecret = builder.Configuration["Authentication:Google:ClientSecret"];
+                })
+                .AddMicrosoftAccount(options => {
+                    options.ClientId = builder.Configuration["Authentication:Microsoft:ClientId"];
+                    options.ClientSecret = builder.Configuration["Authentication:Microsoft:ClientSecret"];
+                    options.AuthorizationEndpoint = "https://login.microsoftonline.com/consumers/oauth2/v2.0/authorize";
+                    options.TokenEndpoint = "https://login.microsoftonline.com/consumers/oauth2/v2.0/token";
+                });
+
             builder.Services.AddAuthorization(options =>
             {
                 // By default, all incoming requests will be authorized according to the default policy.
