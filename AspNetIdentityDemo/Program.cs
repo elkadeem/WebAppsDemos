@@ -24,7 +24,9 @@ namespace AspNetIdentityDemo
             {
                 options.SignIn.RequireConfirmedAccount = true;                
             })
-                .AddEntityFrameworkStores<ApplicationDbContext>();
+                .AddEntityFrameworkStores<ApplicationDbContext>()
+                .AddRoles<IdentityRole>()
+                ;
 
             builder.Services.AddTransient<IEmailSender, SmtpEmailSender>();
             builder.Services.AddTransient<IClaimsTransformation, CustomClaimsTransformation>();

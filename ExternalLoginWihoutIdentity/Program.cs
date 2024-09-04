@@ -1,5 +1,7 @@
+using ExternalLoginWihoutIdentity.Authorization;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authentication.MicrosoftAccount;
+using Microsoft.AspNetCore.Authorization;
 using System.Security.Claims;
 
 namespace ExternalLoginWihoutIdentity
@@ -13,10 +15,11 @@ namespace ExternalLoginWihoutIdentity
             // Add services to the container.
             builder.Services.AddRazorPages();
 
-            builder.Services.AddAuthentication(options => {
+            builder.Services.AddAuthentication(options =>
+            {
                 options.DefaultScheme = CookieAuthenticationDefaults.AuthenticationScheme;
                 options.DefaultChallengeScheme = MicrosoftAccountDefaults.AuthenticationScheme;
-                }
+            }
                 )
 
                 .AddCookie()
@@ -30,7 +33,8 @@ namespace ExternalLoginWihoutIdentity
                     {
                         var claimsIdentity = (ClaimsIdentity)context.Principal.Identity;
                         // Add custom claims here
-
+                        claimsIdentity.AddClaim(new Claim(ClaimTypes.DateOfBirth
+                            , new DateTime(1980, 1, 1).ToString()));
                         claimsIdentity.AddClaim(new Claim("user-agent", context.Request.Headers["User-Agent"].ToString() ?? "unknown"));
                         claimsIdentity.AddClaim(new Claim(ClaimTypes.Role, "MicrosoftEmployee"));
                         return Task.CompletedTask;
@@ -51,21 +55,39 @@ namespace ExternalLoginWihoutIdentity
                     };
                 });
 
-            builder.Services.AddAuthorization(options => { 
-            
-                options.AddPolicy("MicrosoftEmployee", policy => 
+            builder.Services.AddAuthorization(options =>
+            {
+
+                options.AddPolicy("Authenticated", policy => policy.RequireAuthenticatedUser());
+
+                options.AddPolicy("MicrosoftEmployee", policy =>
                 policy.RequireRole("MicrosoftEmployee"));
 
-                options.AddPolicy("GoogleEmployee", policy => 
+                options.AddPolicy("GoogleEmployee", policy =>
                  policy.RequireRole("GoogleEmployee"));
 
-                options.AddPolicy("AllowedFamilies", policy => { 
-                  policy.RequireClaim(ClaimTypes.Surname, "Smith", "Johnson", "Williams", "Jones", "Brown");
+                options.AddPolicy("AllowedFamilies", policy =>
+                {
+                    policy.RequireClaim(ClaimTypes.Surname, "Smith", "Johnson", "Williams", "Jones", "Brown");
                 });
+
+                options.AddPolicy("MinimumAge18", policy =>
+                {
+                    policy.AddRequirements(new MinimumAgeRequirement(18));
+                });
+
+                options.DefaultPolicy = new AuthorizationPolicyBuilder()
+                    .RequireAuthenticatedUser()
+                    .RequireClaim(ClaimTypes.Role)
+                    .AddRequirements(new ChromeRequirmenet(), new BrowserVersionRequirmenet())
+                    .Build();
 
             });
 
-                    var app = builder.Build();
+            builder.Services.AddTransient<IAuthorizationHandler, MinimumAgeAuhorizationHandler>();
+            builder.Services.AddTransient<IAuthorizationHandler, BrowserAuthorizationHandler>();
+
+            var app = builder.Build();
 
             // Configure the HTTP request pipeline.
             if (!app.Environment.IsDevelopment())
