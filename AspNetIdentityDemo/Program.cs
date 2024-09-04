@@ -1,6 +1,9 @@
 global using AspNetIdentityDemo.Entities.Identity;
 using AspNetIdentityDemo.Data;
+using AspNetIdentityDemo.Services;
+using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.EntityFrameworkCore;
 
 namespace AspNetIdentityDemo
@@ -17,8 +20,15 @@ namespace AspNetIdentityDemo
                 options.UseSqlServer(connectionString));
             builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 
-            builder.Services.AddDefaultIdentity<ApplicationUser>(options => options.SignIn.RequireConfirmedAccount = true)
+            builder.Services.AddDefaultIdentity<ApplicationUser>(options =>
+            {
+                options.SignIn.RequireConfirmedAccount = true;                
+            })
                 .AddEntityFrameworkStores<ApplicationDbContext>();
+
+            builder.Services.AddTransient<IEmailSender, SmtpEmailSender>();
+            builder.Services.AddTransient<IClaimsTransformation, CustomClaimsTransformation>();
+
             builder.Services.AddRazorPages();
 
             builder.Services.AddAuthentication()
@@ -27,7 +37,8 @@ namespace AspNetIdentityDemo
                     options.ClientId = builder.Configuration["Authentication:Google:ClientId"];
                     options.ClientSecret = builder.Configuration["Authentication:Google:ClientSecret"];
                 })
-                .AddMicrosoftAccount(options => {
+                .AddMicrosoftAccount(options =>
+                {
                     options.ClientId = builder.Configuration["Authentication:Microsoft:ClientId"];
                     options.ClientSecret = builder.Configuration["Authentication:Microsoft:ClientSecret"];
                     options.AuthorizationEndpoint = "https://login.microsoftonline.com/consumers/oauth2/v2.0/authorize";

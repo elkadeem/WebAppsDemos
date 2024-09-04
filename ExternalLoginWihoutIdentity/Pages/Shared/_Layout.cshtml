@@ -25,6 +25,15 @@
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-page="/Privacy">Privacy</a>
                         </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-page="/MicrosoftEmployees">Microsoft Employees</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-page="/GoogleEmployees">Google Employees</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-page="/AllowedFamilies">Allowed Families</a>
+                        </li>
                     </ul>
                 </div>
             </div>
@@ -32,7 +41,16 @@
     </header>
     <div class="container">
         <main role="main" class="pb-3">
-            <div>@User.Identity.Name</div>
+            <div>
+                @User.Identity.Name
+                @* Print user claims*@
+                <ul>
+                    @foreach (var claim in User.Claims)
+                    {
+                        <li>@claim.Type: @claim.Value</li>
+                    }
+                </ul>
+            </div>
             @RenderBody()
         </main>
     </div>

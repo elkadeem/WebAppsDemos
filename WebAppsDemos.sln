@@ -31,11 +31,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WindowsAuthDemo", "Authenti
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AspNetIdentityDemo", "AspNetIdentityDemo\AspNetIdentityDemo.csproj", "{DA7FD988-E14F-4531-815D-5A9D137A02B6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WsFed-Demo", "AuthenticationAndauthorization\WsFed-Demo\WsFed-Demo.csproj", "{B59C735E-87C9-4088-9F26-5BABEF12B54B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WsFed-Demo", "AuthenticationAndauthorization\WsFed-Demo\WsFed-Demo.csproj", "{B59C735E-87C9-4088-9F26-5BABEF12B54B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebAPIDemoAuth", "AuthenticationAndauthorization\WebAPIDemoAuth\WebAPIDemoAuth.csproj", "{CCF8FFC9-FEB6-4D73-9270-C9472EAEED84}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebAPIDemoAuth", "AuthenticationAndauthorization\WebAPIDemoAuth\WebAPIDemoAuth.csproj", "{CCF8FFC9-FEB6-4D73-9270-C9472EAEED84}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ExternalLoginWihoutIdentity", "ExternalLoginWihoutIdentity\ExternalLoginWihoutIdentity.csproj", "{18EABE89-E819-4484-BC34-C91FBB27E75B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ExternalLoginWihoutIdentity", "ExternalLoginWihoutIdentity\ExternalLoginWihoutIdentity.csproj", "{18EABE89-E819-4484-BC34-C91FBB27E75B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
