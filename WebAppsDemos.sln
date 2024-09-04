@@ -35,6 +35,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WsFed-Demo", "Authenticatio
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebAPIDemoAuth", "AuthenticationAndauthorization\WebAPIDemoAuth\WebAPIDemoAuth.csproj", "{CCF8FFC9-FEB6-4D73-9270-C9472EAEED84}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ExternalLoginWihoutIdentity", "ExternalLoginWihoutIdentity\ExternalLoginWihoutIdentity.csproj", "{18EABE89-E819-4484-BC34-C91FBB27E75B}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -93,6 +95,10 @@ Global
 		{CCF8FFC9-FEB6-4D73-9270-C9472EAEED84}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{CCF8FFC9-FEB6-4D73-9270-C9472EAEED84}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{CCF8FFC9-FEB6-4D73-9270-C9472EAEED84}.Release|Any CPU.Build.0 = Release|Any CPU
+		{18EABE89-E819-4484-BC34-C91FBB27E75B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{18EABE89-E819-4484-BC34-C91FBB27E75B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{18EABE89-E819-4484-BC34-C91FBB27E75B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{18EABE89-E819-4484-BC34-C91FBB27E75B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -106,6 +112,7 @@ Global
 		{DA7FD988-E14F-4531-815D-5A9D137A02B6} = {A273CA4B-31F9-4454-A482-95B5F89A8060}
 		{B59C735E-87C9-4088-9F26-5BABEF12B54B} = {A273CA4B-31F9-4454-A482-95B5F89A8060}
 		{CCF8FFC9-FEB6-4D73-9270-C9472EAEED84} = {A273CA4B-31F9-4454-A482-95B5F89A8060}
+		{18EABE89-E819-4484-BC34-C91FBB27E75B} = {A273CA4B-31F9-4454-A482-95B5F89A8060}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {9124756C-0BAC-4CFC-B152-BD12DCDFB959}
